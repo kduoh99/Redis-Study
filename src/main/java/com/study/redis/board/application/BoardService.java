@@ -20,6 +20,7 @@ public class BoardService {
 	}
 
 	// Cache Aside 전략으로 캐싱 적용
+	// cacheNames: 캐시 이름 설정, key: 저장할 Key 이름 설정(네이밍 컨벤션 적용), cacheManager: 사용할 cacheManager의 Bean 이름을 지정
 	@Cacheable(cacheNames = "getBoards", key = "'boards:page:' + #page + ':size' + #size", cacheManager = "boardCacheManager")
 	public List<Board> getBoards(int page, int size) {
 		Pageable pageable = PageRequest.of(page - 1, size);
